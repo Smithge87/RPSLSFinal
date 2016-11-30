@@ -6,26 +6,24 @@ using System.Threading.Tasks;
 
 namespace RPSLSfinal
 {
-    class Game
+    class Game : Text
     {
         Player playerOne;
         Player playerTwo;
-
+        
         public void StartGame()
         {
-            Console.WriteLine("\n\nWelcome to 'Rock, Paper, Scissors, Lizard, Spock'!");
-            Console.WriteLine("\nA new twist on the classic");
+            EnterGame();
             GetRules();
             ChooseNumberOfPlayers();
-            ThrowAChoice();
-            CompareChoices();
             DeclareVictor();
             SupposeReplay();
         }
         public void GetRules()
         {
-            Console.WriteLine("Each player will input a choice, first player to win two rounds is victor!");
+            Console.WriteLine("\n\nEach player will input a choice, first player to win two rounds is victor!");
         }
+
         public void ChooseNumberOfPlayers()
         {
             Console.WriteLine("Please select 1 or 2 players");
@@ -34,11 +32,13 @@ namespace RPSLSfinal
             {
                 playerOne = new Human();
                 playerTwo = new Computer();
+                RunRoundsOnePlayer();
             }
             else if (playerAmount == "2")
             {
                 playerOne = new Human();
                 playerTwo = new Human();
+                RunRoundsTwoPlayer();
             }
             else
             {
@@ -46,50 +46,65 @@ namespace RPSLSfinal
                 ChooseNumberOfPlayers();
             }
         }
-        public void ThrowAChoice()
-        {
-            playerOne.MakeThrow();
-            playerTwo.MakeThrow();
-        }
-        public void CompareChoices()
+        public void RunRoundsOnePlayer()
         {
             while (playerTwo.score < 2 && playerOne.score < 2)
             {
-                if (5 + playerOne.choice - playerTwo.choice % 5 == 0)
+                Console.WriteLine("\nPlayer One:");
+                playerOne.MakeThrow();
+                playerTwo.MakeThrow();
+                ComputeScore();
+            }
+
+        }
+        public void RunRoundsTwoPlayer()
+        {
+            while (playerTwo.score < 2 && playerOne.score < 2)
+            {
+                Console.WriteLine("\nPlayer One:");
+                playerOne.MakeThrow();
+                Console.WriteLine("\nPlayer Two:");
+                playerTwo.MakeThrow();
+                ComputeScore();
+            }
+
+        }
+
+        public void ComputeScore()
+        {
+                 if ((5 + playerOne.choice - playerTwo.choice) % 5 == 0)
                 {
                     Console.WriteLine("It was a tie!");
-                    ThrowAChoice();
+                    
                 }
-                else if (5 + playerOne.choice - playerTwo.choice % 5 == 1)
+                else if ((5 + playerOne.choice - playerTwo.choice) % 5 == 1)
                 {
                     Console.WriteLine("Player One wins!");
                     playerOne.score++;
                 }
-                else if (5 + playerOne.choice - playerTwo.choice % 5 == 3)
+                else if ((5 + playerOne.choice - playerTwo.choice) % 5 == 3)
                 {
                     Console.WriteLine("Player One wins!");
                     playerOne.score++;
                 }
-                else if (5 + playerOne.choice - playerTwo.choice % 5 == 4)
+                else if ((5 + playerOne.choice - playerTwo.choice) % 5 == 4)
                 {
                     Console.WriteLine("Player Two wins!");
                     playerTwo.score++;
                 }
-                else if (5 + playerOne.choice - playerTwo.choice % 5 == 2)
+                else if ((5 + playerOne.choice - playerTwo.choice) % 5 == 2)
                 {
                     Console.WriteLine("Player Two wins!");
                     playerTwo.score++;
-                }
-            }
-            
+                }         
         }
         public void DeclareVictor()
         {
             if (playerOne.score == 2)
-            Console.WriteLine("Player One is the Winner!");
+            Console.WriteLine("\n\nPlayer One is the Victor!");
             else if (playerTwo.score == 2)
             {
-                Console.WriteLine("Player Two is the Winner!");
+                Console.WriteLine("\n\nPlayer Two is the Victor!");
             }
         }
         public void SupposeReplay()
@@ -109,10 +124,7 @@ namespace RPSLSfinal
             {
                 Console.WriteLine("Invalid Entry. Please try again");
                 SupposeReplay();
-            }
-
-            
-            
+            }           
         }
 
     }

@@ -11,7 +11,7 @@ namespace RPSLSfinal
         
         public override int MakeThrow()
         {
-            Console.WriteLine("Please enter either rock, paper, scissors, lizard, or spock");
+            Console.WriteLine("\n\nPlease enter either rock, paper, scissors, lizard, or spock");
             string userChoice = Console.ReadLine().ToLower();
             if (userChoice == "rock")
             {
@@ -39,6 +39,7 @@ namespace RPSLSfinal
                 MakeThrow();
             }
             return choice;
+            
         }
     }
 }
