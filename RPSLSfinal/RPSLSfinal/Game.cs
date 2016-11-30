@@ -6,46 +6,65 @@ using System.Threading.Tasks;
 
 namespace RPSLSfinal
 {
-    class Game : Text
+    class Game 
     {
         Player playerOne;
         Player playerTwo;
+        Text text = new Text();
         
         public void StartGame()
         {
-            EnterGame();
-            GetRules();
-            ChooseNumberOfPlayers();
+            text.EnterGame();
+            EnterMenu();
             DeclareVictor();
             SupposeReplay();
         }
-        public void GetRules()
+        public void EnterMenu()
         {
-            Console.WriteLine("\n\nEach player will input a choice, first player to win two rounds is victor!");
+            Console.WriteLine("          MENU");
+            Console.WriteLine("------------------------");
+            Console.WriteLine("\n 1) One Player Game");
+            Console.WriteLine("\n 2) Two Player Game");
+            Console.WriteLine("\n 3) Rules");
+            Console.WriteLine("\n 4) Exit\n");
+            string menuChoice = Console.ReadLine();
+            Console.Clear();
+            if (menuChoice == "1")
+            {
+                ChooseOnePlayers();
+            }
+            else if (menuChoice == "2")
+            {
+                ChooseTwoPlayers();
+            }
+            else if (menuChoice == "3")
+            {
+                text.GetRules();
+                EnterMenu();
+            }
+            else if (menuChoice == "4")
+            {
+                Environment.Exit(0);
+            }
+            else
+            {
+                Console.WriteLine("Invalid Choice. Please choose again.");
+            }
         }
-
-        public void ChooseNumberOfPlayers()
-        {
-            Console.WriteLine("Please select 1 or 2 players");
-            string playerAmount = Console.ReadLine();
-            if (playerAmount == "1")
+        public void ChooseOnePlayers()
             {
                 playerOne = new Human();
                 playerTwo = new Computer();
                 RunRoundsOnePlayer();
             }
-            else if (playerAmount == "2")
+        public void ChooseTwoPlayers()
             {
                 playerOne = new Human();
                 playerTwo = new Human();
                 RunRoundsTwoPlayer();
             }
-            else
-            {
-                Console.WriteLine("Invalid choice. Please try again");
-                ChooseNumberOfPlayers();
-            }
-        }
+
+        
         public void RunRoundsOnePlayer()
         {
             while (playerTwo.score < 2 && playerOne.score < 2)
@@ -63,9 +82,12 @@ namespace RPSLSfinal
             {
                 Console.WriteLine("\nPlayer One:");
                 playerOne.MakeThrow();
+                Console.Clear();
                 Console.WriteLine("\nPlayer Two:");
                 playerTwo.MakeThrow();
+                Console.Clear();
                 ComputeScore();
+                
             }
 
         }
