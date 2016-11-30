@@ -13,12 +13,14 @@ namespace RPSLSfinal
 
         public void StartGame()
         {
-            Console.WriteLine("Welcome to the game!");
-            Console.WriteLine("The game is called 'Rock, Paper, Scissors, Lizard, Spock");
+            Console.WriteLine("\n\nWelcome to 'Rock, Paper, Scissors, Lizard, Spock'!");
+            Console.WriteLine("\nA new twist on the classic");
             GetRules();
             ChooseNumberOfPlayers();
             ThrowAChoice();
             CompareChoices();
+            DeclareVictor();
+            SupposeReplay();
         }
         public void GetRules()
         {
@@ -51,31 +53,67 @@ namespace RPSLSfinal
         }
         public void CompareChoices()
         {
-
-            if (5 + playerOne.choice - playerTwo.choice % 5 == 0)
+            while (playerTwo.score < 2 && playerOne.score < 2)
             {
-                Console.WriteLine("It was a tie!");
+                if (5 + playerOne.choice - playerTwo.choice % 5 == 0)
+                {
+                    Console.WriteLine("It was a tie!");
+                    ThrowAChoice();
+                }
+                else if (5 + playerOne.choice - playerTwo.choice % 5 == 1)
+                {
+                    Console.WriteLine("Player One wins!");
+                    playerOne.score++;
+                }
+                else if (5 + playerOne.choice - playerTwo.choice % 5 == 3)
+                {
+                    Console.WriteLine("Player One wins!");
+                    playerOne.score++;
+                }
+                else if (5 + playerOne.choice - playerTwo.choice % 5 == 4)
+                {
+                    Console.WriteLine("Player Two wins!");
+                    playerTwo.score++;
+                }
+                else if (5 + playerOne.choice - playerTwo.choice % 5 == 2)
+                {
+                    Console.WriteLine("Player Two wins!");
+                    playerTwo.score++;
+                }
             }
-            else if (5 + playerOne.choice - playerTwo.choice % 5 == 1)
+            
+        }
+        public void DeclareVictor()
+        {
+            if (playerOne.score == 2)
+            Console.WriteLine("Player One is the Winner!");
+            else if (playerTwo.score == 2)
             {
-                Console.WriteLine("Player One wins!");
-                playerOne.score++;
-            }
-            else if (5 + playerOne.choice - playerTwo.choice % 5 == 3)
-            {
-                Console.WriteLine("Player One wins!");
-                playerOne.score++;
-            }
-            else if (5 + playerOne.choice - playerTwo.choice % 5 == 4)
-            {
-                Console.WriteLine("Player Two wins!");
-                playerTwo.score++;
-            }
-            else if (5 + playerOne.choice - playerTwo.choice % 5 == 2)
-            {
-                Console.WriteLine("Player Two wins!");
-                playerTwo.score++;
+                Console.WriteLine("Player Two is the Winner!");
             }
         }
+        public void SupposeReplay()
+        {
+            Console.WriteLine("Would you like to play again (y/n)?");
+            string proposal = Console.ReadLine().ToLower();
+            if (proposal == "y")
+            {
+                Console.Clear();
+                StartGame();
+            }
+            else if (proposal == "n")
+            {
+                Environment.Exit(0);
+            }
+            else
+            {
+                Console.WriteLine("Invalid Entry. Please try again");
+                SupposeReplay();
+            }
+
+            
+            
+        }
+
     }
 }

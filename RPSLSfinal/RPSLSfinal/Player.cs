@@ -9,10 +9,10 @@ namespace RPSLSfinal
     class Player
     {
         public int choice;
-        public int score;
+        public int score = 0;
         public virtual int MakeThrow()
         {
-            Console.WriteLine("this will hopefully be overwritten and not even matter");
+            Console.WriteLine("this will hopefully be overwritten and not matter");
             return 1;      
         }
 
