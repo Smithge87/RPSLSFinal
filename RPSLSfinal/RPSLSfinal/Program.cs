@@ -11,6 +11,9 @@ namespace RPSLSfinal
         static void Main(string[] args)
         {
             Game game = new Game();
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Clear();
             game.StartGame();
 
             Console.ReadKey();

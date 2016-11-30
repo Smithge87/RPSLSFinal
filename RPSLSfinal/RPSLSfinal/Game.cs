@@ -12,7 +12,13 @@ namespace RPSLSfinal
         Player playerTwo;
         Text text = new Text();
         Player constant = new Player();
-        
+
+        public void colorIt()
+        {
+            if (Console.BackgroundColor == ConsoleColor.Black)
+                Console.BackgroundColor = ConsoleColor.DarkRed;
+        }
+
         public void StartGame()
         {
             text.EnterGame();
@@ -22,7 +28,7 @@ namespace RPSLSfinal
         }
         public void EnterMenu()
         {
-            Console.WriteLine("          MENU");
+            Console.WriteLine("\n\n\n          MENU");
             Console.WriteLine("------------------------");
             Console.WriteLine("\n 1) One Player Game (Player vs. Computer)");
             Console.WriteLine("\n 2) Two Player Game (Player vs. Player)");
@@ -49,7 +55,9 @@ namespace RPSLSfinal
             }
             else
             {
+               
                 Console.WriteLine("Invalid Choice. Please choose again.");
+                EnterMenu();
             }
         }
         public void ChooseOnePlayers()
@@ -66,16 +74,16 @@ namespace RPSLSfinal
             }
         public void SelectNameOne()
         {
-            Console.WriteLine("\nPlayer one please submit your name and press 'enter':");
+            Console.WriteLine("\nPlayer one please submit your name and press 'enter':\n:");
             constant.nameOne = Console.ReadLine();
             Console.Clear();
             ChooseOnePlayers();
         }
         public void SelectNameTwo()
         {
-            Console.WriteLine("\nPlayer one please submit your name and press 'enter'");
+            Console.WriteLine("\nPlayer one please submit your name and press 'enter':\n");
             constant.nameOne = Console.ReadLine();
-            Console.WriteLine("\nPlayer two please submit your name and press 'enter'");
+            Console.WriteLine("\nPlayer two please submit your name and press 'enter':\n");
             constant.nameTwo = Console.ReadLine();
             Console.Clear();
             ChooseTwoPlayers();
@@ -85,7 +93,8 @@ namespace RPSLSfinal
         {
             while (playerTwo.score < 2 && playerOne.score < 2)
             {
-                Console.WriteLine("\n{0} make choice:", constant.nameOne);
+                Console.WriteLine("(Current score = {0} to {1})", playerOne.score, playerTwo.score);
+                Console.WriteLine("\n{0} make choice:\n", constant.nameOne);
                 playerOne.MakeThrow();
                 constant.nameTwo = "Computer";
                 playerTwo.MakeThrow();
@@ -98,10 +107,12 @@ namespace RPSLSfinal
         {
             while (playerTwo.score < 2 && playerOne.score < 2)
             {
-                Console.WriteLine("\n{0}make choice:", constant.nameOne);
+                Console.WriteLine("(Current score = {0} to {1})", playerOne.score, playerTwo.score);
+                Console.WriteLine("\n{0} make choice:\n", constant.nameOne);
                 playerOne.MakeThrow();
                 Console.Clear();
-                Console.WriteLine("\n{0} make choice:", constant.nameTwo);
+                Console.WriteLine("(Current score = {0} to {1})", playerOne.score, playerTwo.score);
+                Console.WriteLine("\n{0} make choice:\n", constant.nameTwo);
                 playerTwo.MakeThrow();
                 Console.Clear();
                 ComputeScore();
@@ -149,7 +160,7 @@ namespace RPSLSfinal
         }
         public void SupposeReplay()
         {
-            Console.WriteLine("Would you like to play again (y/n)?");
+            Console.WriteLine("Would you like to play again (y/n)\n?");
             string proposal = Console.ReadLine().ToLower();
             if (proposal == "y")
             {

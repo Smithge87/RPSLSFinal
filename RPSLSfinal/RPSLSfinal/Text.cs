@@ -11,9 +11,10 @@ namespace RPSLSfinal
 
         public void EnterGame()
         {
-            Console.WriteLine("\n\nWelcome to 'Rock, Paper, Scissors, Lizard, Spock'!");
-            Console.WriteLine("\nA new twist on the classic");
-            Console.WriteLine("\n\n\nPlease press 'enter' to begin");
+            Console.WriteLine("\n\n  Welcome to 'Rock, Paper, Scissors, Lizard, Spock'!");
+            Console.WriteLine("----------------------------------------------------");
+            Console.WriteLine("           A new twist on the classic");
+            Console.WriteLine("\n\n\n\n\n\n\n\n  Please press 'enter' to begin");
             Console.ReadLine();
             Console.Clear();
         }
