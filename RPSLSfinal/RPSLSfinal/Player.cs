@@ -8,6 +8,8 @@ namespace RPSLSfinal
 {
     class Player
     {
+        public string nameOne;
+        public string nameTwo;
         public int choice;
         public int score = 0;
         public virtual int MakeThrow()
